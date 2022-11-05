@@ -1,9 +1,10 @@
-from transformers import BertTokenizerFast
 import argparse
-import pickle
-from tqdm import tqdm
 import logging
+import pickle
+
 import numpy as np
+from tqdm import tqdm
+from transformers import BertTokenizerFast
 
 
 def create_logger(log_path):

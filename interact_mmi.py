@@ -1,13 +1,13 @@
-import torch
-import os
-import random
 import argparse
-from datetime import datetime
-import logging
-from transformers.modeling_gpt2 import GPT2LMHeadModel
-from transformers import BertTokenizer
-import torch.nn.functional as F
 import copy
+import logging
+import os
+from datetime import datetime
+
+import torch
+import torch.nn.functional as F
+from transformers import BertTokenizer
+from transformers.modeling_gpt2 import GPT2LMHeadModel
 
 PAD = '[PAD]'
 pad_id = 0

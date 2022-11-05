@@ -49,9 +49,11 @@ result:
 ## 运行环境
 
 python3.6、 transformers==4.2.0、pytorch==1.7.0
+
 ```shell
 pip3 install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu117
 ```
+
 ## 项目结构
 
 - data

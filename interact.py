@@ -1,22 +1,14 @@
-import transformers
-import torch
-import os
-import json
-import random
-import numpy as np
 import argparse
-from datetime import datetime
-from torch.nn import DataParallel
 import logging
-from transformers import GPT2TokenizerFast, GPT2LMHeadModel, GPT2Config
-from transformers import BertTokenizerFast
+import os
+from datetime import datetime
+
+import torch
 # from transformers import BertTokenizer
-from itertools import zip_longest, chain
 # from chatbot.model import DialogueGPT2Model
-from dataset import MyDataset
-from torch.nn import CrossEntropyLoss
-from sklearn.model_selection import train_test_split
 import torch.nn.functional as F
+from transformers import BertTokenizerFast
+from transformers import GPT2LMHeadModel
 
 PAD = '[PAD]'
 pad_id = 0

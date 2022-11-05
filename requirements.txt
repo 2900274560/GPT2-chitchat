@@ -1,6 +1,5 @@
 transformers
 torch
-sklearn
 tqdm
 numpy
-scipy
+flask
