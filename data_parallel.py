@@ -1,5 +1,5 @@
-from torch.nn.parallel import DataParallel
 import torch
+from torch.nn.parallel import DataParallel
 from torch.nn.parallel._functions import Scatter
 from torch.nn.parallel.parallel_apply import parallel_apply
 
@@ -10,6 +10,7 @@ def scatter(inputs, target_gpus, chunk_sizes, dim=0):
     distributes them across given GPUs. Duplicates
     references to objects that are not tensors.
     """
+
     def scatter_map(obj):
         if isinstance(obj, torch.Tensor):
             try:

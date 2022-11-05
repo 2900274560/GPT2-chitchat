@@ -5,19 +5,15 @@ import json
 import random
 import numpy as np
 import argparse
-from torch.utils.tensorboard import SummaryWriter
 from datetime import datetime
-from tqdm import tqdm
 from torch.nn import DataParallel
 import logging
 from transformers import GPT2TokenizerFast, GPT2LMHeadModel, GPT2Config
 from transformers import BertTokenizerFast
 # from transformers import BertTokenizer
-from os.path import join, exists
 from itertools import zip_longest, chain
 # from chatbot.model import DialogueGPT2Model
 from dataset import MyDataset
-from torch.utils.data import Dataset, DataLoader
 from torch.nn import CrossEntropyLoss
 from sklearn.model_selection import train_test_split
 import torch.nn.functional as F

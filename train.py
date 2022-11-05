@@ -1,29 +1,21 @@
 import argparse
-import math
-import time
+import logging
+import os
+import pickle
+from datetime import datetime
+from os.path import join
+
 import torch
 import torch.nn.functional as F
-import torch.optim as optim
-import logging
-from datetime import datetime
-import os
-from torch.utils.data import Dataset, DataLoader
-from os.path import join, exists
-from torch.nn import CrossEntropyLoss
-from tqdm import tqdm
-from torch.nn import DataParallel
-import transformers
-import pickle
-import sys
-from pytorchtools import EarlyStopping
-from sklearn.model_selection import train_test_split
-from data_parallel import BalancedDataParallel
-from transformers import GPT2TokenizerFast, GPT2LMHeadModel, GPT2Config
-from transformers import BertTokenizerFast
-import pandas as pd
 import torch.nn.utils.rnn as rnn_utils
-import numpy as np
+import transformers
+from torch.nn import DataParallel
+from torch.utils.data import DataLoader
+from transformers import BertTokenizerFast
+from transformers import GPT2LMHeadModel, GPT2Config
+
 from dataset import MyDataset
+from pytorchtools import EarlyStopping
 
 
 def set_args():
@@ -39,7 +31,8 @@ def set_args():
 
     parser.add_argument('--log_path', default='data/train.log', type=str, required=False, help='训练日志存放位置')
     parser.add_argument('--log', default=True, help="是否记录日志")
-    parser.add_argument('--ignore_index', default=-100, type=int, required=False, help='对于ignore_index的label token不计算梯度')
+    parser.add_argument('--ignore_index', default=-100, type=int, required=False,
+                        help='对于ignore_index的label token不计算梯度')
     # parser.add_argument('--input_len', default=200, type=int, required=False, help='输入的长度')
     parser.add_argument('--epochs', default=100, type=int, required=False, help='训练的最大轮次')
     parser.add_argument('--batch_size', default=4, type=int, required=False, help='训练的batch size')
@@ -55,7 +48,8 @@ def set_args():
                         help='预训练的模型的路径')
     # parser.add_argument('--seed', type=int, default=None, help='设置种子用于生成随机数，以使得训练的结果是确定的')
     parser.add_argument('--num_workers', type=int, default=0, help="dataloader加载数据时使用的线程数量")
-    parser.add_argument('--patience', type=int, default=0, help="用于early stopping,设为0时,不进行early stopping.early stop得到的模型的生成效果不一定会更好。")
+    parser.add_argument('--patience', type=int, default=0,
+                        help="用于early stopping,设为0时,不进行early stopping.early stop得到的模型的生成效果不一定会更好。")
     parser.add_argument('--warmup_steps', type=int, default=4000, help='warm up步数')
     # parser.add_argument('--label_smoothing', default=True, action='store_true', help='是否进行标签平滑')
     parser.add_argument('--val_num', type=int, default=8000, help='验证集大小')
@@ -191,7 +185,8 @@ def train_epoch(model, train_dataloader, optimizer, scheduler, logger,
             if (batch_idx + 1) % args.log_step == 0:
                 logger.info(
                     "batch {} of epoch {}, loss {}, batch_acc {}, lr {}".format(
-                        batch_idx + 1, epoch + 1, loss.item() * args.gradient_accumulation_steps, batch_acc, scheduler.get_lr()))
+                        batch_idx + 1, epoch + 1, loss.item() * args.gradient_accumulation_steps, batch_acc,
+                        scheduler.get_lr()))
 
             del input_ids, outputs
 
@@ -250,7 +245,7 @@ def validate_epoch(model, validate_dataloader, logger, epoch, args):
             # 记录当前epoch的平均loss
             epoch_mean_loss = total_loss / len(validate_dataloader)
             logger.info(
-                "validate epoch {}: loss {}".format(epoch+1, epoch_mean_loss))
+                "validate epoch {}: loss {}".format(epoch + 1, epoch_mean_loss))
             epoch_finish_time = datetime.now()
             logger.info('time for validating one epoch: {}'.format(epoch_finish_time - epoch_start_time))
             return epoch_mean_loss

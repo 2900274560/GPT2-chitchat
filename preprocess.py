@@ -1,12 +1,7 @@
-from tokenizers import BertWordPieceTokenizer
-from transformers import BertTokenizer
 from transformers import BertTokenizerFast
 import argparse
-import pandas as pd
 import pickle
-import jieba.analyse
 from tqdm import tqdm
-from transformers import GPT2TokenizerFast, GPT2LMHeadModel
 import logging
 import numpy as np
 
@@ -98,4 +93,3 @@ def preprocess():
 
 if __name__ == '__main__':
     preprocess()
-

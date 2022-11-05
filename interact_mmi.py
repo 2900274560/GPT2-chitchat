@@ -1,24 +1,11 @@
-import transformers
 import torch
 import os
-import json
 import random
-import numpy as np
 import argparse
-from torch.utils.tensorboard import SummaryWriter
 from datetime import datetime
-from tqdm import tqdm
-from torch.nn import DataParallel
 import logging
-from transformers.modeling_gpt2 import GPT2Config, GPT2LMHeadModel
+from transformers.modeling_gpt2 import GPT2LMHeadModel
 from transformers import BertTokenizer
-from os.path import join, exists
-from itertools import zip_longest, chain
-from dataset import MyDataset
-from torch.utils.data import Dataset, DataLoader
-from torch.nn import CrossEntropyLoss
-from sklearn.model_selection import train_test_split
-from train_origin import create_model
 import torch.nn.functional as F
 import copy
 

@@ -1,7 +1,7 @@
 import argparse
-from os.path import join
-import numpy as np
 from collections import Counter
+from os.path import join
+
 import matplotlib.pyplot as plt
 from matplotlib.pyplot import MultipleLocator
 
