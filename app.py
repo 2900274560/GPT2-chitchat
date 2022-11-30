@@ -41,7 +41,7 @@ def robot_chat():
                 text, userinfo['history'] = chat.chat(userinfo, msg)
                 print(f"{username}:{msg}   robot:{text}")
             except Exception as e:
-                userinfo['history'] = ''
+                userinfo['history'] = []
                 text = ''
                 print(f"error {username}:{msg}   robot:{text} {e}")
             return json.dumps({'username': username, 'replay': text})

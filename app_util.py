@@ -45,7 +45,7 @@ def top_k_top_p_filtering(logits, top_k=0, top_p=0.0, filter_value=-float('Inf')
 
 class Chat(object):
     def __init__(self):
-        model_path = 'model/epoch6'
+        model_path = 'model/model_epoch9_100w'
         vocab_path = 'vocab/vocab.txt'
         self.device = 'cpu'
         self.device = 'cuda'
@@ -59,11 +59,11 @@ class Chat(object):
 
     def chat(self, userinfo, text):
         save_samples_path = f'./chat_log/{userinfo["username"]}'
-        max_len = 100  # 每个utterance的最大长度,超过指定长度则进行截断
+        max_len = 60  # 每个utterance的最大长度,超过指定长度则进行截断
         repetition_penalty = 3.0  # 重复惩罚参数，若生成的对话重复性较高，可适当提高该参数
         temperature = 1  # 生成的temperature
-        topk = 10  # 最高k选1
-        topp = 1  # 最高积累概率
+        topk = 8  # 最高k选1
+        topp = 0  # 最高积累概率
         max_history_len = 10  # dialogue history的最大长度
 
         if save_samples_path:
