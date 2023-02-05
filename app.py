@@ -47,5 +47,17 @@ def robot_chat():
             return json.dumps({'username': username, 'replay': text})
 
 
+def chat_test():
+    while True:
+        userinfo = {'username': 'test', 'history': []}
+        try:
+
+            text, userinfo['history'] = chat.chat(userinfo, input('<<'))
+            print(f">>robot:{text}")
+        except Exception as e:
+            userinfo['history'] = []
+            text = ''
+            print(f"error{msg}   robot:{text} {e}")
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=23695, debug=False)
+    chat_test()
+    # app.run(host='0.0.0.0', port=23695, debug=False)

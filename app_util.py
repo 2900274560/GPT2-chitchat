@@ -44,11 +44,10 @@ def top_k_top_p_filtering(logits, top_k=0, top_p=0.0, filter_value=-float('Inf')
 
 
 class Chat(object):
-    def __init__(self):
-        model_path = 'model/model_epoch9_100w'
+    def __init__(self, gpu_enable=False):
+        model_path = 'model/model_epoch40_50w'
         vocab_path = 'vocab/vocab.txt'
-        self.device = 'cpu'
-        self.device = 'cuda'
+        self.device = 'cuda' if gpu_enable else 'cpu'
         os.environ["CUDA_VISIBLE_DEVICES"] = '0'
         os.environ["CUDA_LAUNCH_BLOCKING"] = '1'
         self.tokenizer = BertTokenizerFast(vocab_file=vocab_path, sep_token="[SEP]", pad_token="[PAD]",
@@ -59,12 +58,12 @@ class Chat(object):
 
     def chat(self, userinfo, text):
         save_samples_path = f'./chat_log/{userinfo["username"]}'
-        max_len = 60  # 每个utterance的最大长度,超过指定长度则进行截断
-        repetition_penalty = 3.0  # 重复惩罚参数，若生成的对话重复性较高，可适当提高该参数
+        max_len = 25  # 每个utterance的最大长度,超过指定长度则进行截断
+        repetition_penalty = 1.0  # 重复惩罚参数，若生成的对话重复性较高，可适当提高该参数
         temperature = 1  # 生成的temperature
         topk = 8  # 最高k选1
         topp = 0  # 最高积累概率
-        max_history_len = 10  # dialogue history的最大长度
+        max_history_len = 3  # dialogue history的最大长度
 
         if save_samples_path:
             if not os.path.exists(save_samples_path):
