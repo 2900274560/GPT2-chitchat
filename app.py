@@ -1,10 +1,9 @@
 import json
 import logging
 
-from flask import Flask, request
+from flask import Flask, request, render_template
 
 from app_util import chat
-
 
 logger = logging.getLogger(__file__)
 
@@ -13,7 +12,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello_world():  # put application's code here
-    return 'Ai say: Hello World!'
+    return render_template('chat.html')
 
 
 userinfo_data = {}
