@@ -5,9 +5,6 @@ from flask import Flask, request
 
 from app_util import chat
 
-"""
-curl -# -X POST -H "Content-Type: application/json"  -d '{"token":"2bf8eda6303bc094ad34c935e79da587"}' http://127.0.0.1:5000/XxXxSQL -o face.sql.des3
-"""
 
 logger = logging.getLogger(__file__)
 
@@ -16,7 +13,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello_world():  # put application's code here
-    return 'Hello World!'
+    return 'Ai say: Hello World!'
 
 
 userinfo_data = {}
@@ -57,7 +54,9 @@ def chat_test():
         except Exception as e:
             userinfo['history'] = []
             text = ''
-            print(f"error{msg}   robot:{text} {e}")
+            print(f"robot:{text} {e}")
+
+
 if __name__ == '__main__':
-    chat_test()
-    # app.run(host='0.0.0.0', port=23695, debug=False)
+    # chat_test()
+    app.run(host='0.0.0.0', port=23688, debug=False)

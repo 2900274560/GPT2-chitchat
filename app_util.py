@@ -1,3 +1,4 @@
+import logging
 import os
 from datetime import datetime
 
@@ -55,6 +56,7 @@ class Chat(object):
         self.model = GPT2LMHeadModel.from_pretrained(model_path)
         self.model = self.model.to(self.device)
         self.model.eval()
+        logging.error('chat init ..........')
 
     def chat(self, userinfo, text):
         save_samples_path = f'./chat_log/{userinfo["username"]}'

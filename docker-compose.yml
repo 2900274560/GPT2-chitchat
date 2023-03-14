@@ -1,0 +1,23 @@
+version: '3.2'
+
+services:
+  robot:
+    container_name: chatai
+    restart: always
+    image: 'chatai'
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    working_dir: /data/chat_ai
+    volumes:
+      - ./:/data/chat_ai
+
+    ports:
+      - 23688:23688
+    deploy:
+      resources:
+        limits:
+          cpus: '2'
+          memory: 2048M
+
+

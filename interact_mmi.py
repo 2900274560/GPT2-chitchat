@@ -31,7 +31,8 @@ def set_interact_args():
                         help='dialogue_model路径')
     parser.add_argument('--mmi_model_path', default='mmi_model/', type=str, required=False,
                         help='互信息mmi_model路径')
-    parser.add_argument('--save_samples_path', default="sample/", type=str, required=False, help="保存聊天记录的文件路径")
+    parser.add_argument('--save_samples_path', default="sample/", type=str, required=False,
+                        help="保存聊天记录的文件路径")
     parser.add_argument('--repetition_penalty', default=1.0, type=float, required=False,
                         help="重复惩罚参数，若生成的对话重复性较高，可适当提高该参数")
     parser.add_argument('--seed', type=int, default=None, help='设置种子用于生成随机数，以使得训练的结果是确定的')

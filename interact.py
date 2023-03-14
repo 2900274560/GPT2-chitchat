@@ -25,10 +25,12 @@ def set_args():
     parser.add_argument('--topp', default=0, type=float, required=False, help='最高积累概率')
     # parser.add_argument('--model_config', default='config/model_config_dialogue_small.json', type=str, required=False,
     #                     help='模型参数')
-    parser.add_argument('--log_path', default='data/interact.log', type=str, required=False, help='interact日志存放位置')
+    parser.add_argument('--log_path', default='data/interact.log', type=str, required=False,
+                        help='interact日志存放位置')
     parser.add_argument('--vocab_path', default='vocab/vocab.txt', type=str, required=False, help='选择词库')
     parser.add_argument('--model_path', default='model/epoch40', type=str, required=False, help='对话模型路径')
-    parser.add_argument('--save_samples_path', default="sample/", type=str, required=False, help="保存聊天记录的文件路径")
+    parser.add_argument('--save_samples_path', default="sample/", type=str, required=False,
+                        help="保存聊天记录的文件路径")
     parser.add_argument('--repetition_penalty', default=1.0, type=float, required=False,
                         help="重复惩罚参数，若生成的对话重复性较高，可适当提高该参数")
     # parser.add_argument('--seed', type=int, default=None, help='设置种子用于生成随机数，以使得训练的结果是确定的')
